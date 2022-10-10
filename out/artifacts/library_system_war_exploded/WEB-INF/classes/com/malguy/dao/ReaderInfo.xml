@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.malguy.dao.ReaderInfoDao">
+    <select id="getOneReadInfo" resultType="ReaderInfo">
+        select a.username,a.password
+        from reader_info a
+        where a.username=#{username} and a.password=#{password}
+    </select>
+    <update id="updatePassword">
+        update `reader_info` t
+        set t.`password`=#{password}
+        where t.username=#{username};
+    </update>
+</mapper>

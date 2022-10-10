@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.malguy.dao.AdminDao">
+    <!--数据库字段和方法返回值的映射,名字一样可以不配-->
+    <resultMap id="adminMap" type="com.malguy.pojo.Admin">
+        <!--配置主键-->
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="adminType" property="adminType" />
+    </resultMap>
+    <select id="getOneAdminInfo" resultMap="adminMap">
+        select * from admin a where a.username=#{username} and a.`password`=#{password}
+    </select>
+    <update id="updatePassword">
+        update `admin` a
+        set a.`password`=#{password}
+        where a.username=#{username};
+    </update>
+</mapper>

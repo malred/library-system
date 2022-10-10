@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.malguy.dao.BookInfoDao">
+    <!--因为配置了实体类的包(在mybatis的配置文件里),所以不需要全类名-->
+    <select id="getBookInfoListByPage" resultType="BookInfo">
+        select a.*,b.name as "typeName"
+        from book_info a type_info b
+        where a.typeId=b.id
+            limit #{pageStart}
+           , #{limit}
+    </select>
+    <select id="getBookInfoList" resultType="com.malguy.pojo.BookInfo">
+        select a.*,b.name as "typeName"
+        from book_info a , type_info b
+        where a.typeId = b.id
+    </select>
+    <select id="getBookInfoCount" resultType="int">
+        select count(*) from book_info
+    </select>
+</mapper>
